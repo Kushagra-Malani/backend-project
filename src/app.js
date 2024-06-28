@@ -16,4 +16,10 @@ app.use(express.urlencoded({limit: "16kb"})) // the data which comes from the UR
 app.use(express.static("public"))  // static is used to store images, pdf, files, etc in our server in a public folder called "public"
 app.use(cookieParser()) // to access or set cookies from the user's browser from my server in a secure way
 
+// routes import
+import userRouter from "./routes/user.routes.js";
+
+// routes declaration
+app.use("/api/v1/users", userRouter)  // after coming to this url (http://localhost:8000/api/v1/users) userRouter takes control and re-directs the user to http://localhost:8000/api/v1/users/register where the registerUser method is called and the user is registered
+
 export { app }
