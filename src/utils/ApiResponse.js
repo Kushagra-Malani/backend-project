@@ -4,5 +4,8 @@ class ApiResponse {
         this.data = data
         this.message = message
         this.success = statusCode < 400   // as statusCode greater than 400 are for errors & less than 400 for responses
+
     }
 }
+
+export {ApiResponse}

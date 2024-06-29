@@ -26,5 +26,8 @@ const uploadOnCloudinary = async(localFilePath) => {
         }
     } catch (error) {
         fs.unlinkSync(localFilePath) // removing the locally saved file as the upload to cloudinary failed so, there is no need of keeping it in our local storage as it may contain virus
+        return null
     }
 }
+
+export {uploadOnCloudinary}
