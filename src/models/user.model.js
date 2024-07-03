@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import { JsonWebTokenError } from "jsonwebtoken";
+import pkg from "jsonwebtoken";
+const jwt = pkg;
 import bcrypt from 'bcrypt'
 
 const userSchema = new mongoose.Schema(

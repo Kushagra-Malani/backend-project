@@ -1,7 +1,7 @@
 import { Router } from "express";
-import {registerUser} from "../controllers/user.controller.js";
+import {loginUser, logoutUser, registerUser, refreshAccessToken} from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
-import { ApiError } from "../utils/ApiError.js";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 const router = Router()
 // after adding '/register' in the url (i.e /api/v1/users), a middleware i.e upload is called which accepts avatar image & cover image file and then registerUser method is called
@@ -18,5 +18,11 @@ router.route("/register").post(
     ]),    
     registerUser
 )  
+
+router.route("/login").post(loginUser)
+
+// secured routes - using the auth middleware to check if the user is loggedIn & only if the user is loggedIn then we give the user these routes
+router.route("/logout").post(verifyJWT, logoutUser)
+router.route("/refresh-token").post(refreshAccessToken)
 
 export default router
